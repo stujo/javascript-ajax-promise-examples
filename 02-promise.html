@@ -1,0 +1,36 @@
+<html>
+<body>
+<div>This Page uses promise.done()</div>
+
+<button id="clickme">Click Me</button>
+
+<div id="output"></div>
+
+<script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+
+<script>
+
+$('#clickme').click(function(){
+
+  var promise = $.ajax({
+    url: 'https://query.yahooapis.com/v1/public/yql?q=select%20item.condition%20from%20weather.forecast%20where%20woeid%20%3D%202487889&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'
+  });
+
+  promise.done(
+    function(data) {
+      console.log('First Callback');
+      $('#output').text(data.query.results.channel.item.condition.text);
+    }
+  );
+
+  promise.done(
+     function(data) {
+      console.log('Second Callback');
+    }
+    );
+
+});
+
+</script>
+</body>
+</html>

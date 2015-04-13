@@ -1,0 +1,24 @@
+<html>
+<body>
+<div>This Page uses $.getJSON()</div>
+
+<button id="clickme">Click Me</button>
+
+<div id="output"></div>
+
+<a href="https://www.yahoo.com/?ilc=401" target="_blank"> <img src="https://poweredby.yahoo.com/purple.png" width="134" height="29"/> </a>
+
+
+<script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+
+<script>
+
+$('#clickme').click(function(){
+  $.getJSON('https://query.yahooapis.com/v1/public/yql?q=select%20item.condition%20from%20weather.forecast%20where%20woeid%20%3D%202487889&format=json', function(data){
+    $('#output').text(JSON.stringify(data));
+  })
+});
+
+</script>
+</body>
+</html>

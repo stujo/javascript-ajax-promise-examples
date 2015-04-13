@@ -1,0 +1,31 @@
+<html>
+<body>
+<div>This Page uses promise.fail()</div>
+
+<button id="clickme">Click Me</button>
+
+<div id="output"></div>
+
+<script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+
+<script>
+var promise = null;
+
+$('#clickme').click(function(){
+   promise = $.ajax({
+    url: 'http://example.com/api/'
+  });
+
+  promise.done(function(data) {
+    $('#output').html(data.text);
+  });
+
+  promise.fail(function(jqXHR, payload) {
+    $('#output').html("<p>SOME CRAZY ERROR HAPPENED (" + payload + ")");
+  });
+
+});
+
+</script>
+</body>
+</html>
